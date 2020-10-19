@@ -1,0 +1,25 @@
+{
+  "env": "production",
+  "server": {
+    "port": 30003,
+    "host": "0.0.0.0"
+  },
+  "database": {
+    "mongo": {
+      "type": "mongo",
+      "name": "BOOK_STALL_PRODUCTION",
+      "host": "database",
+      "port": 27017,
+      "username": "",
+      "password": ""
+    }
+  },
+  "logging": {
+    "name": "BOOK_STALL_PRODUCTION",
+    "level": "debug",
+    "path": "/tmp/node_debug.log"
+  },
+  "swagger": {
+    "host": "0.0.0.0"
+  }
+}

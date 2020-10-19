@@ -1,0 +1,42 @@
+{
+  "name": "book-stall",
+  "version": "1.0.0",
+  "description": "This project will maintain list of books and it's details",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=lcov --reporter=html mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunnysmane/book-stall.git"
+  },
+  "keywords": [
+    "book",
+    "stall",
+    "inventory",
+    "library"
+  ],
+  "author": "Sunny Mane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunnysmane/book-stall/issues"
+  },
+  "homepage": "https://github.com/sunnysmane/book-stall#readme",
+  "dependencies": {
+    "@hapi/joi-date": "^2.0.1",
+    "bunyan": "^1.8.14",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "config": "^3.3.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "joi": "^17.2.1",
+    "joi-date-extensions": "^1.2.0",
+    "mocha": "^8.2.0",
+    "mongoose": "^5.10.9",
+    "node-static": "^0.7.11",
+    "nyc": "^15.1.0",
+    "qs": "^6.9.4",
+    "url": "^0.11.0"
+  }
+}

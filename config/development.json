@@ -1,0 +1,25 @@
+{
+  "env": "development",
+  "server": {
+    "port": 30001,
+    "host": "0.0.0.0"
+  },
+  "database": {
+    "mongo": {
+      "type": "mongo",
+      "name": "BOOK_STALL_DEVELOPMENT",
+      "host": "0.0.0.0",
+      "port": 27017,
+      "username": "",
+      "password": ""
+    }
+  },
+  "logging": {
+    "name": "BOOK_STALL_DEVELOPMENT",
+    "level": "debug",
+    "path": "/tmp/node_debug.log"
+  },
+  "swagger": {
+    "host": "0.0.0.0"
+  }
+}
