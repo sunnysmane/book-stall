@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nodejs:
+    build: .
+    ports:
+      - "30003:30003"
+    environment:
+      - NODE_ENV=production
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
