@@ -19,7 +19,7 @@ exports.addBook = async (req, res) => {
         }
         [err, validationResponse] = await to(validation.addBook(body));
         if (err) {
-            let response = Response.sendResponse(false, validationResponse, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+            let response = Response.sendResponse(false, (err && err.details) ? err.details : err, ((err && err.details[0] && err.details[0].message) ? err.details[0].message : ResponseMessages.ERROR), StatusCodes.BAD_REQUEST);
             res.statusCode = StatusCodes.BAD_REQUEST;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(response));
@@ -37,7 +37,7 @@ exports.getBook = async (req, res) => {
     }
     [err, validationResponse] = await to(validation.getBook(query));
     if (err) {
-        let response = Response.sendResponse(false, validationResponse, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+        let response = Response.sendResponse(false, (err && err.details) ? err.details : err, ((err && err.details[0] && err.details[0].message) ? err.details[0].message : ResponseMessages.ERROR), StatusCodes.BAD_REQUEST);
         res.statusCode = StatusCodes.BAD_REQUEST;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response));
@@ -53,7 +53,7 @@ exports.getBookById = async (req, res) => {
     };
     [err, validationResponse] = await to(validation.getBookById(params));
     if (err) {
-        let response = Response.sendResponse(false, validationResponse, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+        let response = Response.sendResponse(false, (err && err.details) ? err.details : err, ((err && err.details[0] && err.details[0].message) ? err.details[0].message : ResponseMessages.ERROR), StatusCodes.BAD_REQUEST);
         res.statusCode = StatusCodes.BAD_REQUEST;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response));
@@ -78,7 +78,7 @@ exports.updateBook = async (req, res) => {
         };
         [err, validationResponse] = await to(validation.updateBook(body));
         if (err) {
-            let response = Response.sendResponse(false, validationResponse, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+            let response = Response.sendResponse(false, (err && err.details) ? err.details : err, ((err && err.details[0] && err.details[0].message) ? err.details[0].message : ResponseMessages.ERROR), StatusCodes.BAD_REQUEST);
             res.statusCode = StatusCodes.BAD_REQUEST;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(response));
@@ -95,7 +95,7 @@ exports.deleteBook = async (req, res) => {
     };
     [err, validationResponse] = await to(validation.deleteBook(params));
     if (err) {
-        let response = Response.sendResponse(false, validationResponse, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+        let response = Response.sendResponse(false, (err && err.details) ? err.details : err, ((err && err.details[0] && err.details[0].message) ? err.details[0].message : ResponseMessages.ERROR), StatusCodes.BAD_REQUEST);
         res.statusCode = StatusCodes.BAD_REQUEST;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response));
