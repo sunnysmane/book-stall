@@ -10,6 +10,9 @@ const http = require('http'),
 
 exports.init = async () => {
     const server = http.createServer((req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Request-Method', '*');
+        res.setHeader('Access-Control-Allow-Headers', '*');
         if (req.url === '/book' && req.method === 'POST') {
             controller.addBook(req, res);
         } else if (req.url.includes('/book') && req.method === 'GET') {
@@ -60,6 +63,44 @@ exports.init = async () => {
                     }
                 } else {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(content, 'utf-8');
+                }
+            });
+        } else if (req.url === '/documentation') {
+            fs.readFile(`${__dirname}/swagger/index.html`, function(error, content) {
+                if (error) {
+                    if(error.code == 'ENOENT'){
+                        let response = responseObj.sendResponse(false, null, responseMessage.NOT_FOUND, statusCode.NOT_FOUND);
+                        res.statusCode = statusCode.NOT_FOUND;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify(response));
+                    } else {
+                        let response = responseObj.sendResponse(false, null, `Sorry, check with the site admin for error: ${error.code} ..`, statusCode.INTERNAL_SERVER_ERROR);
+                        res.statusCode = statusCode.INTERNAL_SERVER_ERROR;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify(response));
+                    }
+                } else {
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
+                    res.end(content, 'utf-8');
+                }
+            });
+        } else if (req.url === '/swagger-ui.css') {
+            fs.readFile(`${__dirname}/swagger/swagger-ui.css`, function(error, content) {
+                if (error) {
+                    if(error.code == 'ENOENT'){
+                        let response = responseObj.sendResponse(false, null, responseMessage.NOT_FOUND, statusCode.NOT_FOUND);
+                        res.statusCode = statusCode.NOT_FOUND;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify(response));
+                    } else {
+                        let response = responseObj.sendResponse(false, null, `Sorry, check with the site admin for error: ${error.code} ..`, statusCode.INTERNAL_SERVER_ERROR);
+                        res.statusCode = statusCode.INTERNAL_SERVER_ERROR;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify(response));
+                    }
+                } else {
+                    res.writeHead(200, { 'Content-Type': 'text/css' });
                     res.end(content, 'utf-8');
                 }
             });

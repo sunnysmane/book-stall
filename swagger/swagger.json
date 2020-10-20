@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "0.0.0.0:40000",
+  "host": "0.0.0.0:30003",
   "basePath": "/",
   "schemes": [
     "http",

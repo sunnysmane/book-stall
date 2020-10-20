@@ -91,17 +91,32 @@ exports.updateBook = async (params, data, res) => {
         let condition = {
             _id: params.id
         };
-        [err, result] = await to(dbConnector.updateOne(condition, data));
+        [err, result] = await to(dbConnector.findOne(condition, {}));
         if (err) {
             let response = Response.sendResponse(false, err, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
             res.statusCode = StatusCodes.BAD_REQUEST;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(response));
         } else {
-            let response = Response.sendResponse(true, result, ResponseMessages.UPDATED, StatusCodes.OK);
-            res.statusCode = StatusCodes.OK;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(response));
+            if (result) {
+                [err, result] = await to(dbConnector.updateOne(condition, data));
+                if (err) {
+                    let response = Response.sendResponse(false, err, ResponseMessages.ERROR, StatusCodes.BAD_REQUEST);
+                    res.statusCode = StatusCodes.BAD_REQUEST;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(response));
+                } else {
+                    let response = Response.sendResponse(true, result, ResponseMessages.UPDATED, StatusCodes.OK);
+                    res.statusCode = StatusCodes.OK;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(response));
+                }
+            } else {
+                let response = Response.sendResponse(false, result, ResponseMessages.NOT_FOUND, StatusCodes.BAD_REQUEST);
+                res.statusCode = StatusCodes.BAD_REQUEST;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(response));
+            }
         }
     } catch (e) {
         console.log(e);

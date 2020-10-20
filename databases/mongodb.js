@@ -22,7 +22,9 @@ const init = () => {
 
     Mongoose.connection.on('error', function (err) {
         log.info(`Mongoose default connection error: ${err}`);
-        init();
+        setTimeout(() => {
+            init();
+        }, 5000)
     });
 
 
