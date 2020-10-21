@@ -21,7 +21,7 @@ Now Goto browser and open below link for Angular Application
 Open Below link for backend swagger documentation
 [http://0.0.0.0:30003/documentation](http://0.0.0.0:30003/documentation)
 
-2. Without Docker Compose (Running Individually)
+2. Without Docker Compose
 ```
 export NODE_ENV=env-local
 node index.js
